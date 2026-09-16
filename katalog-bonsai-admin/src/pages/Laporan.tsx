@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import api from '../lib/api'
 import type { TransaksiQris } from '../types/transaksi'
 import type { LaporanManual, LaporanRow } from '../types/laporan'
@@ -34,13 +33,13 @@ export default function Laporan() {
       ])
 
       const qrisRows: LaporanRow[] = qrisRes.data.data.map((t) => ({
-  tanggal: t.created_at.slice(0, 10),
-  nama_pembeli: t.nama_pembeli || '-',
-  item: t.item_pembelian || `Order ${t.order_id}`,
-  harga: Number(t.amount),
-  metode: 'QRIS',
-  catatan: t.order_id,
-}))
+        tanggal: t.created_at.slice(0, 10),
+        nama_pembeli: t.nama_pembeli || '-',
+        item: t.item_pembelian || `Order ${t.order_id}`,
+        harga: Number(t.amount),
+        metode: 'QRIS',
+        catatan: t.order_id,
+      }))
 
       const manualRows: LaporanRow[] = manualRes.data.data.map((l) => ({
         tanggal: l.tanggal,
@@ -96,44 +95,40 @@ export default function Laporan() {
   const totalOmzet = rows.reduce((sum, r) => sum + r.harga, 0)
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b px-6 py-4 flex justify-between items-center">
-        <div>
-          <h1 className="text-lg font-semibold text-gray-900">Laporan Penjualan</h1>
-          <p className="text-sm text-gray-500">Gabungan transaksi QRIS &amp; manual</p>
-        </div>
-        <Link to="/" className="text-sm text-gray-500 hover:text-gray-800 transition">
-          ← Dashboard
-        </Link>
+    <div>
+      <header className="bg-white border-b-2 border-gold-500/30 px-6 py-4">
+        <h1 className="text-lg font-semibold text-maroon-800">Laporan Penjualan</h1>
+        <p className="text-sm text-gray-500">Gabungan transaksi QRIS &amp; manual</p>
       </header>
 
-      <main className="p-6 max-w-4xl mx-auto">
-        <div className="bg-white border rounded-xl shadow-sm p-5 mb-6">
+      <main className="p-6 max-w-4xl">
+        <div className="bg-white border border-gold-500/20 rounded-xl shadow-sm p-5 mb-6">
+          <h2 className="text-sm font-semibold text-maroon-800 mb-3">Export Laporan</h2>
           <div className="flex flex-wrap items-end gap-3">
             <div>
-              <label className="text-sm text-gray-600 mb-1 block">Dari Tanggal</label>
+              <label className="text-xs text-gray-500 mb-1 block">Dari Tanggal</label>
               <input
                 type="date"
                 value={from}
                 onChange={(e) => setFrom(e.target.value)}
-                className="border rounded-lg px-3 py-2 text-sm"
+                className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-maroon-600"
               />
             </div>
             <div>
-              <label className="text-sm text-gray-600 mb-1 block">Sampai Tanggal</label>
+              <label className="text-xs text-gray-500 mb-1 block">Sampai Tanggal</label>
               <input
                 type="date"
                 value={to}
                 onChange={(e) => setTo(e.target.value)}
-                className="border rounded-lg px-3 py-2 text-sm"
+                className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-maroon-600"
               />
             </div>
             <div>
-              <label className="text-sm text-gray-600 mb-1 block">Format</label>
+              <label className="text-xs text-gray-500 mb-1 block">Format</label>
               <select
                 value={format}
                 onChange={(e) => setFormat(e.target.value as 'xlsx' | 'csv')}
-                className="border rounded-lg px-3 py-2 text-sm"
+                className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-maroon-600"
               >
                 <option value="xlsx">Excel (.xlsx)</option>
                 <option value="csv">CSV (.csv)</option>
@@ -142,7 +137,7 @@ export default function Laporan() {
             <button
               onClick={handleExport}
               disabled={exporting}
-              className="bg-green-700 hover:bg-green-800 transition text-white px-4 py-2 rounded-lg text-sm font-medium disabled:opacity-50"
+              className="bg-maroon-700 hover:bg-maroon-800 transition text-gold-300 px-4 py-2 rounded-lg text-sm font-medium disabled:opacity-50"
             >
               {exporting ? 'Menyiapkan file...' : '⬇ Export Laporan'}
             </button>
@@ -150,12 +145,12 @@ export default function Laporan() {
           {error && <p className="text-red-500 text-sm mt-3">{error}</p>}
         </div>
 
-        <div className="bg-white border rounded-xl shadow-sm overflow-hidden">
-          <div className="px-5 py-3 border-b flex justify-between items-center">
+        <div className="bg-white border border-gold-500/20 rounded-xl shadow-sm overflow-hidden">
+          <div className="px-5 py-3 border-b border-gold-500/20 bg-maroon-50/50 flex justify-between items-center">
             <span className="text-sm text-gray-500">
               {rows.length} transaksi ditampilkan
             </span>
-            <span className="text-sm font-semibold text-gray-900">
+            <span className="text-sm font-semibold text-maroon-800">
               Total: {formatRupiah(totalOmzet)}
             </span>
           </div>
@@ -166,30 +161,33 @@ export default function Laporan() {
             <p className="p-6 text-center text-gray-500 text-sm">Belum ada transaksi.</p>
           ) : (
             <table className="w-full text-sm">
-              <thead className="bg-gray-50 text-gray-500 text-left">
+              <thead className="bg-maroon-800 text-gold-300 text-left">
                 <tr>
-                  <th className="px-5 py-2 font-medium">Tanggal</th>
-                  <th className="px-5 py-2 font-medium">Pembeli</th>
-                  <th className="px-5 py-2 font-medium">Item</th>
-                  <th className="px-5 py-2 font-medium">Harga</th>
-                  <th className="px-5 py-2 font-medium">Metode</th>
+                  <th className="px-5 py-3 font-medium">Tanggal</th>
+                  <th className="px-5 py-3 font-medium">Pembeli</th>
+                  <th className="px-5 py-3 font-medium">Item</th>
+                  <th className="px-5 py-3 font-medium">Harga</th>
+                  <th className="px-5 py-3 font-medium">Metode</th>
                 </tr>
               </thead>
               <tbody>
                 {rows.map((row, i) => (
-                  <tr key={i} className="border-t">
-                    <td className="px-5 py-2 text-gray-600">{row.tanggal}</td>
-                    <td className="px-5 py-2 text-gray-800">{row.nama_pembeli}</td>
-                    <td className="px-5 py-2 text-gray-800">{row.item}</td>
-                    <td className="px-5 py-2 text-gray-800">
+                  <tr
+                    key={i}
+                    className="border-t border-gold-500/10 hover:bg-cream-50 transition"
+                  >
+                    <td className="px-5 py-3 text-gray-600">{row.tanggal}</td>
+                    <td className="px-5 py-3 text-gray-800">{row.nama_pembeli}</td>
+                    <td className="px-5 py-3 text-gray-800">{row.item}</td>
+                    <td className="px-5 py-3 text-gray-900 font-medium">
                       {formatRupiah(row.harga)}
                     </td>
-                    <td className="px-5 py-2">
+                    <td className="px-5 py-3">
                       <span
-                        className={`text-xs px-2 py-1 rounded-full ${
+                        className={`text-xs font-medium px-2.5 py-1 rounded-full ${
                           row.metode === 'QRIS'
-                            ? 'bg-blue-100 text-blue-700'
-                            : 'bg-orange-100 text-orange-700'
+                            ? 'bg-maroon-100 text-maroon-700'
+                            : 'bg-gold-500/20 text-gold-600'
                         }`}
                       >
                         {row.metode}

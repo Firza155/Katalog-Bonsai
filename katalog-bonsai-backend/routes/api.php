@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\TransaksiQrisController;
 use App\Http\Controllers\Api\LaporanManualController;
 use App\Http\Controllers\Api\LaporanController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\DashboardController;
 
 // Auth
 Route::post('/login', [AuthController::class, 'login']);
@@ -30,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
 // Route publik untuk katalog user (tanpa login)
 Route::get('/public/bonsais', [BonsaiController::class, 'index']);
 Route::get('/public/bonsais/{bonsai}', [BonsaiController::class, 'show']);
+Route::get('/dashboard/stats', [DashboardController::class, 'stats']);
 
 // Webhook Midtrans (public, dipanggil server Midtrans — bukan browser)
 Route::post('/midtrans/webhook', [TransaksiQrisController::class, 'webhook']);

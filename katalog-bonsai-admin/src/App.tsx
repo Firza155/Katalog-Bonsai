@@ -1,9 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './routes/ProtectedRoute'
+import Layout from './components/Layout'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import TransaksiQris from './pages/TransaksiQris'
 import Laporan from './pages/Laporan'
+import LaporanManual from './pages/LaporanManual'
+
 
 function App() {
   return (
@@ -12,21 +16,17 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route
-            path="/"
             element={
               <ProtectedRoute>
-                <Dashboard />
+                <Layout />
               </ProtectedRoute>
             }
-          />
-          <Route
-            path="/laporan"
-            element={
-              <ProtectedRoute>
-                <Laporan />
-              </ProtectedRoute>
-            }
-          />
+          >
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/transaksi-qris" element={<TransaksiQris />} />
+            <Route path="/laporan" element={<Laporan />} />
+            <Route path="/laporan-manual" element={<LaporanManual />} />
+          </Route>
         </Routes>
       </AuthProvider>
     </BrowserRouter>

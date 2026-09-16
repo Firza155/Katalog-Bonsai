@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+  --color-maroon-50: #eef5ee;
+  --color-maroon-100: #d3e8d3;
+  --color-maroon-600: #1e6b3a;
+  --color-maroon-700: #15532c;
+  --color-maroon-800: #123f22;
+  --color-maroon-900: #0b2916;
+
+  --color-gold-300: #ecd9a0;
+  --color-gold-400: #ddbc6a;
+  --color-gold-500: #c9a24a;
+  --color-gold-600: #ab8535;
+
+  --color-cream-50: #faf6ef;
+  --color-cream-100: #f3ecdd;
+}
