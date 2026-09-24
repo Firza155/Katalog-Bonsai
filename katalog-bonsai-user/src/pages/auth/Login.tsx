@@ -3,15 +3,8 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 
 // Mengambil icon dari library Lucide React.
-import {
-  Eye,
-  EyeOff,
-  LockKeyhole,
-  LogIn,
-  UserRound,
-} from "lucide-react";
+import { Eye, EyeOff, LockKeyhole, LogIn, UserRound } from "lucide-react";
 
-// Mengambil file logo Bonsai Gerung dari folder assets.
 import logo from "../../assets/logo-bonsai-gerung.png";
 
 // Mengambil gambar bonsai yang akan digunakan sebagai background.

@@ -1,40 +1,27 @@
-// Mengambil BrowserRouter untuk mengaktifkan routing pada aplikasi.
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-
-// Mengambil halaman login user.
 import Login from "./pages/auth/Login";
+import Home from "./pages/home/Home";
+import UserLayout from "./layouts/UserLayout";
 
-// Component utama aplikasi.
+// Membuat component utama aplikasi.
 export default function App() {
-  // Mengembalikan seluruh routing aplikasi.
+  // Mengembalikan struktur routing aplikasi.
   return (
-    // BrowserRouter mengaktifkan navigasi berbasis URL.
+    // BrowserRouter mengaktifkan sistem routing berbasis URL.
     <BrowserRouter>
-      {/* Routes menampung semua daftar route aplikasi. */}
+      {/* Routes menampung semua halaman aplikasi. */}
       <Routes>
-        {/* Route halaman login user. */}
-        <Route
-          /* URL halaman login. */
-          path="/login"
-          /* Component yang ditampilkan pada route tersebut. */
-          element={<Login />}
-        />
+        {/* Route untuk seluruh halaman User yang menggunakan layout. */}
+        <Route element={<UserLayout />}>
+          {/* Route halaman Beranda. */}
+          <Route path="/" element={<Home />} />
+        </Route>
 
-        {/* Route sementara untuk halaman utama. */}
-        <Route
-          /* URL halaman utama. */
-          path="/"
-          /* Untuk sementara diarahkan ke login. */
-          element={<Navigate to="/login" replace />}
-        />
+        {/* Route halaman Login. */}
+        <Route path="/login" element={<Login />} />
 
-        {/* Menangani URL yang belum memiliki route. */}
-        <Route
-          /* Tanda * berarti semua URL lain. */
-          path="*"
-          /* Mengarahkan URL yang tidak dikenal ke login. */
-          element={<Navigate to="/login" replace />}
-        />
+        {/* Semua URL yang belum tersedia diarahkan ke Beranda. */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
