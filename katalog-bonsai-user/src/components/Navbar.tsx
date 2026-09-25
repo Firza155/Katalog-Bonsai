@@ -33,7 +33,7 @@ export default function Navbar() {
   // Mengembalikan tampilan Navbar.
   return (
     // Header dibuat sticky agar tetap terlihat saat user melakukan scroll.
-    <header className="sticky top-0 z-50 border-b border-border bg-white/95 shadow-md backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-[#DDE4DE] bg-[#EEF2EE]/95 shadow-lg backdrop-blur">
       {/* Container utama Navbar. */}
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
         {/* Area logo. */}
@@ -147,7 +147,7 @@ export default function Navbar() {
       {/* Menu mobile. */}
       {isMenuOpen && (
         // Container menu mobile.
-        <div className="border-t border-border bg-white shadow-md md:hidden">
+        <div className="border-t border-[#DDE4DE] bg-[#EEF2EE] shadow-lg md:hidden">
           {/* Isi menu mobile. */}
           <div className="mx-auto max-w-7xl px-5 py-5">
             {/* Daftar menu mobile. */}

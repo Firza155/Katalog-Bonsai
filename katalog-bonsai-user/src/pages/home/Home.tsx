@@ -1,13 +1,17 @@
 import HeroSection from "../../components/HeroSection";
+import CategorySection from "../../components/CategorySection";
+import FeaturedBonsai from "../../components/FeaturedBonsai";
+import AboutSection from "../../components/AboutSection";
 
 // Membuat halaman Beranda User.
 export default function Home() {
-  // Mengembalikan isi halaman Beranda.
+  // Mengembalikan seluruh bagian halaman Beranda.
   return (
-    // Wrapper halaman Beranda.
     <>
-      {/* Menampilkan hero section di bagian paling atas. */}
       <HeroSection />
+      <CategorySection />
+      <FeaturedBonsai />
+      <AboutSection />
     </>
   );
 }

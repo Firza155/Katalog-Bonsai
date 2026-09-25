@@ -1,26 +1,37 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import Home from "./pages/home/Home";
+import Catalog from "./pages/catalog/Catalog";
 import UserLayout from "./layouts/UserLayout";
+import BonsaiDetail from "./pages/catalog/BonsaiDetail";
+import About from "./pages/about/About";
 
 // Membuat component utama aplikasi.
 export default function App() {
-  // Mengembalikan struktur routing aplikasi.
   return (
-    // BrowserRouter mengaktifkan sistem routing berbasis URL.
+    // Mengaktifkan routing browser.
     <BrowserRouter>
-      {/* Routes menampung semua halaman aplikasi. */}
+      {/* Mendefinisikan seluruh route. */}
       <Routes>
-        {/* Route untuk seluruh halaman User yang menggunakan layout. */}
+        {/* Semua halaman customer menggunakan UserLayout. */}
         <Route element={<UserLayout />}>
-          {/* Route halaman Beranda. */}
+          {/* Halaman Beranda. */}
           <Route path="/" element={<Home />} />
+
+          {/* Halaman Katalog. */}
+          <Route path="/katalog" element={<Catalog />} />
+
+          {/* Route untuk detail satu bonsai berdasarkan ID. */}
+          <Route path="/katalog/:id" element={<BonsaiDetail />} />
+
+          {/* Route untuk detail satu bonsai berdasarkan ID. */}
+          <Route path="/tentang" element={<About />} />
         </Route>
 
-        {/* Route halaman Login. */}
+        {/* Halaman Login. */}
         <Route path="/login" element={<Login />} />
 
-        {/* Semua URL yang belum tersedia diarahkan ke Beranda. */}
+        {/* URL yang belum tersedia diarahkan ke Beranda. */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
