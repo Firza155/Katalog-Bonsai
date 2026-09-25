@@ -1,10 +1,11 @@
 import { NavLink, Outlet } from 'react-router-dom'
-import { Home, QrCode, BarChart3, FileText, LogOut } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import logo from '../assets/logo.png'
+import { Home, QrCode, BarChart3, FileText, Trees, LogOut } from 'lucide-react'
 
 const menuItems = [
   { to: '/', label: 'Dashboard', icon: Home, end: true },
+  { to: '/katalog-bonsai', label: 'Katalog Bonsai', icon: Trees },
   { to: '/transaksi-qris', label: 'Transaksi QRIS', icon: QrCode },
   { to: '/laporan', label: 'Laporan Penjualan', icon: BarChart3 },
   { to: '/laporan-manual', label: 'Laporan Manual', icon: FileText },

@@ -3,6 +3,7 @@ export interface PenjualanTerbaru {
   waktu: string
   harga: number
   metode: 'QRIS' | 'Manual'
+  foto: string | null
 }
 
 export interface DashboardStats {

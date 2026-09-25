@@ -9,10 +9,10 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts'
+import { Sprout, ShoppingCart, Banknote, QrCode, ArrowRight, Calendar } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import api from '../lib/api'
 import type { DashboardStats } from '../types/dashboard'
-import { Sprout, ShoppingCart, Banknote, QrCode, ArrowRight, Calendar } from 'lucide-react'
 
 function formatRupiah(value: number) {
   return new Intl.NumberFormat('id-ID', {
@@ -31,6 +31,10 @@ function formatTanggalPendek(dateStr: string) {
 function formatWaktu(iso: string) {
   const d = new Date(iso)
   return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })
+}
+
+function imageUrl(path: string) {
+  return `http://localhost:8000/storage/${path}`
 }
 
 function PctBadge({ value }: { value: number }) {
@@ -79,7 +83,7 @@ export default function Dashboard() {
           <div className="flex justify-between items-start mb-6">
             <div>
               <p className="text-sm text-gray-500">Selamat Datang,</p>
-              <h1 className="text-2xl font-bold text-gray-900">{user?.name} Bonsai Gerung</h1>
+              <h1 className="text-2xl font-bold text-gray-900">{user?.name}</h1>
               <p className="text-sm text-gray-500 mt-1">
                 Kelola katalog, penjualan, dan laporan dengan mudah dan efisien.
               </p>
@@ -102,7 +106,7 @@ export default function Dashboard() {
 
             <div className="bg-white border rounded-xl shadow-sm p-5">
               <div className="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center mb-3">
-                <ShoppingCart size={18} strokeWidth={1.75} />   
+                <ShoppingCart size={18} strokeWidth={1.75} />
               </div>
               <p className="text-xs text-gray-500">Total Penjualan</p>
               <p className="text-2xl font-bold text-gray-900 mt-1">{stats.total_penjualan}</p>
@@ -111,7 +115,7 @@ export default function Dashboard() {
 
             <div className="bg-white border rounded-xl shadow-sm p-5">
               <div className="w-10 h-10 rounded-full bg-gold-500 text-white flex items-center justify-center mb-3">
-                Rp
+                <Banknote size={18} strokeWidth={1.75} />
               </div>
               <p className="text-xs text-gray-500">Total Pendapatan</p>
               <p className="text-xl font-bold text-gray-900 mt-1">
@@ -122,7 +126,7 @@ export default function Dashboard() {
 
             <div className="bg-white border rounded-xl shadow-sm p-5">
               <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center mb-3">
-                🔲
+                <QrCode size={18} strokeWidth={1.75} />
               </div>
               <p className="text-xs text-gray-500">Transaksi QRIS</p>
               <p className="text-2xl font-bold text-gray-900 mt-1">{stats.total_qris}</p>
@@ -133,24 +137,24 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
             {/* Chart */}
             <div className="lg:col-span-2 bg-white border rounded-xl shadow-sm p-5">
-  <div className="flex justify-between items-start mb-4">
-    <div>
-      <h2 className="text-sm font-semibold text-gray-900">Grafik Penjualan</h2>
-      <p className="text-xs text-gray-500 mt-1">
-        Data penjualan {periode} hari terakhir
-      </p>
-    </div>
-    <select
-      value={periode}
-      onChange={(e) => setPeriode(Number(e.target.value))}
-      className="border rounded-lg px-2.5 py-1.5 text-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-maroon-600"
-    >
-      <option value={7}>7 Hari Terakhir</option>
-      <option value={14}>14 Hari Terakhir</option>
-      <option value={30}>30 Hari Terakhir</option>
-      <option value={90}>90 Hari Terakhir</option>
-    </select>
-  </div>
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h2 className="text-sm font-semibold text-gray-900">Grafik Penjualan</h2>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Data penjualan {periode} hari terakhir
+                  </p>
+                </div>
+                <select
+                  value={periode}
+                  onChange={(e) => setPeriode(Number(e.target.value))}
+                  className="border rounded-lg px-2.5 py-1.5 text-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-maroon-600"
+                >
+                  <option value={7}>7 Hari Terakhir</option>
+                  <option value={14}>14 Hari Terakhir</option>
+                  <option value={30}>30 Hari Terakhir</option>
+                  <option value={90}>90 Hari Terakhir</option>
+                </select>
+              </div>
               <ResponsiveContainer width="100%" height={240}>
                 <AreaChart data={chartData}>
                   <defs>
@@ -188,8 +192,16 @@ export default function Dashboard() {
                 )}
                 {stats.penjualan_terbaru.map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-maroon-50 flex items-center justify-center text-lg shrink-0">
-                      🌳
+                    <div className="w-10 h-10 rounded-lg bg-maroon-50 flex items-center justify-center shrink-0 overflow-hidden">
+                      {item.foto ? (
+                        <img
+                          src={imageUrl(item.foto)}
+                          alt={item.nama}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <Sprout size={18} className="text-maroon-700" strokeWidth={1.75} />
+                      )}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-gray-800 truncate">{item.nama}</p>
@@ -236,7 +248,7 @@ export default function Dashboard() {
                 <h2 className="font-semibold text-gray-900">Laporan Penjualan</h2>
                 <p className="text-sm text-gray-500 mt-1">Lihat & export laporan</p>
               </div>
-              <span className="text-gray-400 group-hover:translate-x-1 transition">→</span>
+              <ArrowRight size={18} className="text-gray-400 group-hover:translate-x-1 transition" />
             </Link>
 
             <Link
@@ -247,7 +259,7 @@ export default function Dashboard() {
                 <h2 className="font-semibold text-gray-900">Laporan Manual</h2>
                 <p className="text-sm text-gray-500 mt-1">Catat pesanan offline</p>
               </div>
-              <span className="text-gray-400 group-hover:translate-x-1 transition">→</span>
+              <ArrowRight size={18} className="text-gray-400 group-hover:translate-x-1 transition" />
             </Link>
           </div>
 

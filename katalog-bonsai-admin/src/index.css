@@ -1,18 +1,69 @@
 @import "tailwindcss";
 
+/* Mendefinisikan warna dan token desain Bonsai Gerung. */
 @theme {
-  --color-maroon-50: #eef5ee;
-  --color-maroon-100: #d3e8d3;
-  --color-maroon-600: #1e6b3a;
-  --color-maroon-700: #15532c;
-  --color-maroon-800: #123f22;
-  --color-maroon-900: #0b2916;
+  --color-primary: #1b3d2e;
+  --color-primary-light: #2e5e47;
+  --color-accent: #e11d2e;
+  --color-gold: #d4af37;
+  --color-dark: #0f172a;
+  --color-muted: #6b8f71;
+  --color-cream: #f7f6ef;
+  --color-border: #e5e7eb;
 
-  --color-gold-300: #ecd9a0;
-  --color-gold-400: #ddbc6a;
-  --color-gold-500: #c9a24a;
-  --color-gold-600: #ab8535;
+  /* Alias: supaya class lama (maroon-*, gold-*, cream-*) yang sudah
+     dipakai di komponen admin panel tetap jalan, sekarang menunjuk
+     ke warna resmi dari web user. */
+  --color-maroon-50: #eef3ef;
+  --color-maroon-100: #d3e2d7;
+  --color-maroon-600: var(--color-primary-light);
+  --color-maroon-700: var(--color-primary);
+  --color-maroon-800: var(--color-primary);
+  --color-maroon-900: var(--color-dark);
 
-  --color-cream-50: #faf6ef;
-  --color-cream-100: #f3ecdd;
+  --color-gold-300: #e8d488;
+  --color-gold-400: var(--color-gold);
+  --color-gold-500: var(--color-gold);
+  --color-gold-600: #b8952e;
+
+  --color-cream-50: var(--color-cream);
+  --color-cream-100: #efeadb;
+}
+
+/* Mengatur variabel dasar HTML. */
+:root {
+  font-family: "Poppins", sans-serif;
+  color: var(--color-dark);
+  background: var(--color-cream);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mengatur semua elemen agar padding dan border masuk dalam ukuran elemen. */
+* {
+  box-sizing: border-box;
+}
+
+/* Mengatur elemen HTML utama. */
+html {
+  margin: 0;
+  min-height: 100%;
+}
+
+/* Mengatur body aplikasi. */
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-width: 320px;
+  background: var(--color-cream);
+}
+
+/* Mengatur root tempat React dirender. */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  text-align: left;
 }
