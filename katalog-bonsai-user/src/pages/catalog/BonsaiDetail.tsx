@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, MessageCircle, PackageCheck, Tag } from "lucide-react";
 import { bonsaiData, bonsaiPlaceholderImage } from "../../data/bonsaiData";
 import type { Bonsai } from "../../types/bonsai";
+import { contactData } from "../../data/contactData";
 
 // Membuat halaman detail bonsai.
 export default function BonsaiDetail() {
@@ -210,16 +211,26 @@ export default function BonsaiDetail() {
               <div className="mt-7">
                 {/* Tombol WhatsApp sementara. */}
                 <a
-                  // Placeholder sementara karena nomor WhatsApp resmi belum kita masukkan.
-                  href="#whatsapp"
-                  // Styling tombol.
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 text-sm font-semibold text-white transition hover:bg-primary-light"
-                >
-                  {/* Icon WhatsApp. */}
-                  <MessageCircle size={19} />
+                // Membuat pesan WhatsApp yang otomatis menyebut nama bonsai.
+                href={contactData.getWhatsappUrl(
+                `Halo Bonsai Gerung, saya tertarik dengan ${bonsai.nama}. Saya ingin mendapatkan informasi lebih lanjut mengenai bonsai ini.`
+                )}
 
-                  {/* Teks tombol. */}
-                  Hubungi Penjual via WhatsApp
+                // Membuka WhatsApp di tab baru.
+                target="_blank"
+
+                // Menambahkan keamanan ketika membuka tab baru.
+                rel="noopener noreferrer"
+
+                // Memberikan style tombol WhatsApp.
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-green-600 px-5 py-3 font-semibold text-white transition hover:bg-green-700"
+                >
+                    
+                {/* Menampilkan icon chat. */}
+                <MessageCircle size={18} />
+
+                {/* Icon WhatsApp bisa kita tambahkan di sini nanti. */}
+                Hubungi Penjual via WhatsApp
                 </a>
 
                 {/* Penjelasan proses bisnis. */}

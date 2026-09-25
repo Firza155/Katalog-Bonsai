@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, Sprout, TreeDeciduous, Trees } from "lucide-react";
-import logo from "../../assets/logo-bonsai-gerung.png";
+import logoIcon from "../../assets/logo-bonsai-icon.png";
 
 // Membuat halaman Tentang Kami.
 export default function About() {
@@ -56,48 +56,77 @@ export default function About() {
   return (
     <main className="bg-cream">
       {/* Hero halaman Tentang Kami. */}
-      <section className="relative overflow-hidden bg-primary">
-        {/* Dekorasi background untuk memberikan kedalaman visual. */}
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/5" />
+        <section
+        // Mengatur posisi section agar elemen dekorasi absolute tidak keluar dari area hero.
+        className="relative overflow-hidden"
+        >
+        {/* Lingkaran dekoratif di bagian kanan atas. */}
+        <div
+            // Membuat lingkaran besar sebagai elemen dekorasi.
+            className="absolute -right-24 -top-24 h-80 w-80 rounded-full border border-white/5"
+        />
 
-        {/* Container hero. */}
-        <div className="relative mx-auto grid min-h-[420px] max-w-7xl items-center gap-10 px-5 py-16 sm:px-8 lg:grid-cols-2 lg:px-10">
-          {/* Area teks hero. */}
-          <div>
+        {/* Lingkaran dekoratif tambahan dengan ukuran lebih kecil. */}
+        <div
+            // Membuat lingkaran kedua untuk menambah kedalaman visual.
+            className="absolute -right-10 top-16 h-44 w-44 rounded-full bg-white/[0.03]"
+        />
+
+        {/* Garis dekoratif tipis di bagian kiri bawah. */}
+        <div
+            // Membuat garis horizontal dengan opacity rendah.
+            className="absolute bottom-10 left-0 h-px w-48 bg-gold/30"
+        />
+
+        {/* Container utama hero. */}
+        <div
+            // Mengatur layout menjadi dua kolom pada desktop.
+            className="relative mx-auto grid min-h-[440px] max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-20">
+            {/* Kolom kiri untuk teks hero. */}
+            <div
+            // Membatasi lebar teks agar mudah dibaca.
+            className="max-w-2xl"
+            >
             {/* Label kecil halaman. */}
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
-              Tentang Kami
+            <p
+                // Menggunakan warna cream transparan untuk label kecil.
+                className="text-sm font-semibold uppercase tracking-[0.22em] text-primary-light">
+                {/* Teks label. */}
+                Tentang Kami
             </p>
 
-            {/* Judul utama. */}
-            <h1 className="mt-4 max-w-xl text-4xl font-semibold leading-tight text-white sm:text-5xl">
-              Mengenal Bonsai Gerung
+            {/* Judul utama halaman. */}
+            <h1
+                // Membuat judul besar dengan kontras tinggi.
+                className="mt-4 max-w-xl text-4xl font-semibold leading-[1.1] tracking-tight text-dark sm:text-5xl lg:text-6xl">
+                Mengenal
+
+                {/* Baris kedua diberi warna gold sebagai aksen brand. */}
+                <span className="block text-primary">
+                Bonsai Gerung
+                </span>
             </h1>
 
-            {/* Deskripsi singkat. */}
-            <p className="mt-6 max-w-xl text-sm leading-7 text-white/70 sm:text-base">
-              Mengenal lebih dekat usaha Bonsai Gerung dan koleksi bonsai yang
-              tersedia untuk pelanggan.
+            {/* Deskripsi hero. */}
+            <p
+                // Membuat teks deskripsi mudah dibaca pada background hijau.
+                className="mt-6 max-w-xl text-sm leading-7 text-slate-600 sm:text-base">
+                {/* Teks deskripsi. */}
+                Mengenal lebih dekat usaha, koleksi, dan karakter Bonsai Gerung.
             </p>
-          </div>
-
-          {/* Area logo. */}
-          <div className="flex justify-center lg:justify-end">
-            {/* Card logo. */}
-            <div className="flex h-64 w-64 items-center justify-center rounded-full bg-white/95 p-8 shadow-2xl sm:h-72 sm:w-72">
-              {/* Logo Bonsai Gerung. */}
-              <img
-                // Menggunakan logo lengkap.
-                src={logo}
-                // Alternative text untuk accessibility.
-                alt="Bonsai Gerung"
-                // Mengatur ukuran logo.
-                className="w-full object-contain"
-              />
             </div>
-          </div>
+
+            {/* Kolom kanan untuk logo icon. */}
+            <div className="flex justify-center lg:justify-end">
+            {/* Container putih dibuat mengikuti ukuran logo */}
+            <div
+                >
+                {/* Logo icon Bonsai Gerung */}
+                <img src={logoIcon} alt="Logo Bonsai Gerung" className=" h-72 w-72 object-contain sm:h-70 sm:w-70"/>
+            </div>
+            </div>
         </div>
-      </section>
+        </section>
 
       {/* Bagian profil usaha. */}
       <section className="bg-white py-20 sm:py-24">

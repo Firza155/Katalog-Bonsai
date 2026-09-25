@@ -5,6 +5,7 @@ import Catalog from "./pages/catalog/Catalog";
 import UserLayout from "./layouts/UserLayout";
 import BonsaiDetail from "./pages/catalog/BonsaiDetail";
 import About from "./pages/about/About";
+import Contact from "./pages/contact/Contact";
 
 // Membuat component utama aplikasi.
 export default function App() {
@@ -24,8 +25,11 @@ export default function App() {
           {/* Route untuk detail satu bonsai berdasarkan ID. */}
           <Route path="/katalog/:id" element={<BonsaiDetail />} />
 
-          {/* Route untuk detail satu bonsai berdasarkan ID. */}
+          {/* Halaman Tentang Kami */}
           <Route path="/tentang" element={<About />} />
+
+          {/* Halaman Kontak */}
+          <Route path="/kontak" element={<Contact />} />
         </Route>
 
         {/* Halaman Login. */}

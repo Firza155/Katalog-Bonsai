@@ -1,11 +1,6 @@
-// Mengambil Link agar user dapat diarahkan ke halaman katalog.
-import { Link } from "react-router-dom";
-
-// Mengambil icon lokasi untuk informasi lokasi usaha.
 import { MapPin } from "lucide-react";
-
-// Mengambil logo lengkap Bonsai Gerung.
 import logo from "../assets/logo-bonsai-gerung.png";
+import { contactData } from "../data/contactData";
 
 // Membuat component AboutSection.
 export default function AboutSection() {
@@ -65,40 +60,44 @@ export default function AboutSection() {
               memiliki karakter dan tingkat perkembangan yang berbeda.
             </p>
 
-            {/* Informasi lokasi usaha. */}
-            <div className="mt-7 flex items-start gap-3 rounded-2xl border border-border bg-cream p-4">
-              {/* Icon lokasi. */}
-              <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <MapPin size={19} />
-              </div>
+            {/* Link menuju lokasi usaha di Google Maps. */}
+            <a
+            // Menggunakan URL Google Maps dari contactData.
+            href={contactData.googleMapsUrl}
 
-              {/* Teks lokasi. */}
-              <div>
+            // Membuka Google Maps pada tab baru.
+            target="_blank"
+
+            // Menambahkan keamanan saat membuka tab baru.
+            rel="noopener noreferrer"
+
+            // Mengatur tampilan kartu lokasi.
+            className="mt-7 flex items-start gap-3 rounded-2xl border border-border bg-cream p-4 transition hover:border-primary hover:shadow-md"
+            >
+            {/* Icon lokasi. */}
+            <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                {/* Menampilkan icon lokasi. */}
+                <MapPin size={19} />
+            </div>
+
+            {/* Teks lokasi. */}
+            <div>
                 {/* Label informasi. */}
                 <p className="text-xs font-medium uppercase tracking-wide text-muted">
-                  Lokasi
+                Lokasi
                 </p>
 
                 {/* Nilai lokasi. */}
                 <p className="mt-1 text-sm font-semibold text-dark">
-                  Dusun Gerung, Desa Pehserut, Kecamatan Sukomoro, Kabupaten Nganjuk 
+                Dusun Gerung, Desa Pehserut, Kecamatan Sukomoro, Kabupaten Nganjuk
                 </p>
-              </div>
-            </div>
 
-            {/* Area tombol. */}
-            <div className="mt-7">
-              {/* Link menuju katalog. */}
-              <Link
-                // Tujuan link.
-                to="/katalog"
-                // Styling tombol.
-                className="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-primary-light"
-              >
-                {/* Teks tombol. */}
-                Jelajahi Koleksi
-              </Link>
+                {/* Petunjuk tambahan untuk user. */}
+                <p className="mt-2 text-xs font-medium text-primary">
+                Buka lokasi di Google Maps →
+                </p>
             </div>
+            </a>
           </div>
         </div>
       </div>

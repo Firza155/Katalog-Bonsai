@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"; // Mengambil komponen Link untuk berpindah ke halaman katalog.
 import { ArrowRight } from "lucide-react"; // icon ArrowRight dari Lucide React.
 import bonsaiBackground from "../assets/bonsai-bg.png";
+import { contactData } from "../data/contactData";
 
 // Membuat component Hero Section.
 export default function HeroSection() {
@@ -47,9 +48,15 @@ export default function HeroSection() {
 
             {/* Tombol kedua untuk menghubungi penjual. */}
             <a
-              // Menentukan alamat WhatsApp sementara.
-              // Nanti nomor akan diganti dengan nomor resmi Bonsai Gerung.
-              href="#whatsapp"
+              // Membuat URL WhatsApp menggunakan pesan default.
+              href={contactData.getWhatsappUrl()}
+
+              // Membuka WhatsApp pada tab baru.
+              target="_blank"
+
+              // Menambahkan keamanan saat membuka tab baru.
+              rel="noopener noreferrer"
+              
               // Menentukan link tidak membuka tab baru.
               className="inline-flex items-center justify-center rounded-xl border border-primary px-6 py-3.5 text-sm font-semibold text-primary transition hover:bg-primary hover:text-white"
             >
