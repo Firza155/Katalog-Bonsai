@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Mendefinisikan warna dan token desain Bonsai Gerung. */
+@theme {
+  --color-primary: #1b3d2e;
+  --color-primary-light: #2e5e47;
+  --color-accent: #e11d2e;
+  --color-gold: #d4af37;
+  --color-dark: #0f172a;
+  --color-muted: #6b8f71;
+  --color-cream: #f7f6ef;
+  --color-border: #e5e7eb;
+}
+
+/* Mengatur variabel dasar HTML. */
+:root {
+  font-family: "Poppins", sans-serif;
+  color: var(--color-dark);
+  background: var(--color-cream);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mengatur semua elemen agar padding dan border masuk dalam ukuran elemen. */
+* {
+  box-sizing: border-box;
+}
+
+/* Mengatur elemen HTML utama. */
+html {
+  margin: 0; /* Menghapus margin bawaan browser. */
+  min-height: 100%;   /* Memastikan tinggi halaman minimal sebesar layar. */
+}
+
+/* Mengatur body aplikasi. */
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-width: 320px;
+  background: var(--color-cream);
+}
+
+/* Mengatur root tempat React dirender. */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  text-align: left;
+}
